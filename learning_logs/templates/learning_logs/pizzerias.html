@@ -1,4 +1,5 @@
 {% extends 'learning_logs/base.html' %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,15 +12,13 @@
     </head>
     <body>
         {% block content %}
-            <h1>Toppings:</h1>
-            <ul>
-            {% for topping in toppings %}
-                <li>{{topping}}</li>
-                {% empty %} <!-- if there are no toppings...-->
-                    <li>There are no toppings in this pizzeria</li>
+            {% for pizzeria in pizzerias %}
+            <!-- {{topping}} in double brackets means this is a template variable-->
+                <li><a href="{% url 'learning_logs:topping' pizzeria.id %}">{{pizzeria}}</a></li>
+                {% empty %}
+                    <li>No pizzerias have been added yet.</li>
             {% endfor %}
-            </ul>
-        {% endblock %}
+        {% endblock content%}
         
         <script src="" async defer></script>
     </body>

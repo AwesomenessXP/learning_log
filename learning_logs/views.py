@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Topic, Topping
+from .models import Topic, Pizzeria, Topping
 
 # Create your views here.
 # the render() funtion renders the response based on data provided by views
@@ -39,13 +39,8 @@ def topics(request):
     context = {'topics':topics}
     return render(request, 'learning_logs/topics.html', context)
 
-def pizza(request):
-    toppings = Topping.objects.all() # send this data to the html page
-    context = {'toppings': toppings}
-    return render(request, 'learning_logs/toppings.html', context)
-
 def topic(request, topic_id):
-    """Show a single topicc and all its entries"""
+    """Show a single topic and all its entries"""
 
     # we want to access topic_id attributes from the class
     topic = Topic.objects.get(id=topic_id) #ex: 1, 2, 3
@@ -54,3 +49,14 @@ def topic(request, topic_id):
     # in context, we define a dictionary of all defined objects
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
+
+def pizza(request):
+    pizzerias = Pizzeria.objects.all() # send this data to the html page
+    context = {'pizzerias': pizzerias}
+    return render(request, 'learning_logs/pizzerias.html', context)
+
+def toppings(request, topping_id):
+    pizzeria = Pizzeria.objects.get(id=topping_id)
+    toppings = pizzeria.topping_set.all()
+    context = {'toppings': toppings, 'pizzeria': pizzeria}
+    return render(request, 'learning_logs/toppings.html', context)
