@@ -20,7 +20,7 @@ urlpatterns = [
     path('topics/', views.topics, name='topics'),
 
     #Pizza page
-    path('pizzeria/', views.pizza, name='pizzeria'),
+    path('pizzerias/', views.pizza, name='pizzerias'),
 
     # Detail page for a single topic
     # 'topics' tells Django to look for URL with 'topics' after base URL
@@ -28,5 +28,5 @@ urlpatterns = [
     path('topics/<int:topic_id>/', views.topic, name='topic'),
 
     # Topping
-    path('pizzeria/<int:topping_id>/', views.toppings, name='topping') # simple mistake here, DONT FORGET BRACKETS!!
+    path('pizzerias/<int:pizzeria_id>/', views.pizzas, name='pizza') # simple mistake here, DONT FORGET BRACKETS!!
 ]

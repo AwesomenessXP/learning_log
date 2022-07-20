@@ -31,7 +31,7 @@ class Pizzeria(models.Model):
     def __str__(self):
         return f"{self.name[:50]}"
 
-class Topping(models.Model):
+class Pizza(models.Model):
     pizza = models.ForeignKey(Pizzeria, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 

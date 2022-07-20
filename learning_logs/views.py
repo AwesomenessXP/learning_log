@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Topic, Pizzeria, Topping
+from .models import Topic, Pizzeria, Pizza
 
 # Create your views here.
 # the render() funtion renders the response based on data provided by views
@@ -8,9 +8,10 @@ from .models import Topic, Pizzeria, Topping
 
 """
 HOW TO MAKE A NEW PAGE:
-1. specify url pattern
+1. specify url pattern with path()
 2. write a view function (and return the html file)
 3. write a template (the html file)
+4. (optional) if you need an index, use <int:index_num>
 """
 
 """ when URL request matches the pattern, Django looks for 'request' object 
@@ -55,8 +56,8 @@ def pizza(request):
     context = {'pizzerias': pizzerias}
     return render(request, 'learning_logs/pizzerias.html', context)
 
-def toppings(request, topping_id):
-    pizzeria = Pizzeria.objects.get(id=topping_id)
-    toppings = pizzeria.topping_set.all()
+def pizzas(request, pizzeria_id):
+    pizzeria = Pizzeria.objects.get(id=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
+    toppings = pizzeria.pizza_set.all()
     context = {'toppings': toppings, 'pizzeria': pizzeria}
-    return render(request, 'learning_logs/toppings.html', context)
+    return render(request, 'learning_logs/pizzas.html', context)
