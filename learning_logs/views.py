@@ -43,3 +43,14 @@ def pizza(request):
     toppings = Topping.objects.all() # send this data to the html page
     context = {'toppings': toppings}
     return render(request, 'learning_logs/toppings.html', context)
+
+def topic(request, topic_id):
+    """Show a single topicc and all its entries"""
+
+    # we want to access topic_id attributes from the class
+    topic = Topic.objects.get(id=topic_id) #ex: 1, 2, 3
+    entries = topic.entry_set.order_by('-date_added') #ex: 7/20/22, 7/21/22
+
+    # in context, we define a dictionary of all defined objects
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'learning_logs/topic.html', context)

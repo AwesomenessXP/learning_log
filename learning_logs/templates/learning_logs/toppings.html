@@ -13,7 +13,8 @@
     <body>
         {% block content %}
             {% for topping in toppings %}
-                <li>{{topping}}</li> <!-- {{topping}} in double brackets means this is a template variable-->
+            <!-- {{topping}} in double brackets means this is a template variable-->
+                <li>{{topping}}</li>
                 {% empty %}
                     <li>No toppings have been added yet.</li>
             {% endfor %}

@@ -1,0 +1,37 @@
+{% extends 'learning_logs/base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+            <!-- REMEMBER: {{topic}} means topic is a variable -->
+            <p>Topic: {{topic}}</p>
+
+            <p>Entries:</p>
+            <ul>
+                {% for entry in entries %}
+                    <li>
+                        <!--
+                            1. the vertical line '|' represents template filter
+                            2. the template filter modifies the value in a template variable
+                            3. filter: date:'M d, Y H:i'
+                        -->
+                        <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
+                        <p>{{entry.text|linebreaks}}</p> <!-- creates a linebreak-->
+                    </li>
+                    {% empty %} <!-- if there are no entries, do this-->
+                        <li>There are no entries for this topic</li>
+                {% endfor %}
+            </ul>
+        {% endblock content %}
+        
+        <script src="" async defer></script>
+    </body>
+</html>

@@ -21,4 +21,9 @@ urlpatterns = [
 
     #Pizza page
     path('pizza/', views.pizza, name='pizza'),
+
+    # Detail page for a single topic
+    # 'topics' tells Django to look for URL with 'topics' after base URL
+    # <int:topic_id> matches an integer that stores the integer in topic_d
+    path('topics/<int:topic_id>/', views.topic, name='topic'),
 ]
