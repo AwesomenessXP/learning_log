@@ -11,8 +11,9 @@
     <body>
         <!-- Add links to the respective pages-->
         <p>
-            <a href="{% url 'learning_logs:index' %}">Home</a>
-            <a href="{% url 'learning_logs:topics' %}">Topics</a>
+            <!-- Each line says to generate a url matching the name of each page-->
+            <a href="{% url 'learning_logs:index' %}">Home</a> -
+            <a href="{% url 'learning_logs:topics' %}">Topics</a> -
             <a href="{% url 'learning_logs:pizza' %}">Pizza Toppings!</a>
         </p>
 

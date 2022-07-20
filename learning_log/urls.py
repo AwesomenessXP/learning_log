@@ -24,5 +24,5 @@ urlpatterns = [
 
     # this path uses '' AND it can chain other urls from include()  
     # REMEMBER: include () chains other urls
-    path('', include('learning_logs.urls')), # http://127.0.0.1:8000/main/
+    path('', include('learning_logs.urls')), # http://127.0.0.1:8000/
 ]
