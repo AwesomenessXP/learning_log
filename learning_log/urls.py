@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('', include('learning_logs.urls'))
+    # these are two different views when you enter the website:
+    # REMEMBER: they are at the same level!!
+
+    path('admin/', admin.site.urls), # http://127.0.0.1:8000/admin/  
+
+    # this path uses '' AND it can chain other urls from include()  
+    path('', include('learning_logs.urls')), # http://127.0.0.1:8000/main/
 ]
