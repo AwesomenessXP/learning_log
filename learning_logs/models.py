@@ -13,7 +13,7 @@ class Topic(models.Model):
 class Entry(models.Model):
     """Something specific learned about a topic"""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
 
 # this class holds extra information about the model
@@ -23,4 +23,17 @@ class Entry(models.Model):
 
     def __str__(self):
         """Return a string representation of the model"""
-        return f"{self.text[:50]}..."
+        return f"{self.text[:50]}" #show only the first 50 characters
+
+class Pizzeria(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name[:50]}"
+
+class Topping(models.Model):
+    pizza = models.ForeignKey(Pizzeria, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name[:50]}"

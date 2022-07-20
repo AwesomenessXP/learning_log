@@ -8,14 +8,21 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="">
     </head>
     <body>
-        <!-- EVERYTHING WE ARENT INHERITING FROM BASE.HTML GOES IN BLOCK-->
-        {% block content %} <!-- Define content block-->
-        <p>Learning Log helps you keep track of your learning, for any topic you're learning about.</p>
-        {% endblock content %} <!-- end content block-->
 
+        {% block content%}
+        <p>Topics</p>
+        <ul>
+            {% for topic in topics %}
+                <li>{{topic}}</li> 
+                {% empty %}
+                    <li>No topics have been added yet.</li>
+            {% endfor %} <!-- used to end a group enclosed in brackets -->
+        </ul>
+        {% endblock content %}
+        
         <script src="" async defer></script>
     </body>
 </html>
