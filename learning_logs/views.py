@@ -84,7 +84,9 @@ def new_topic(request):
     # if valid, redirect to topics, else -> display blank form
     if (form.is_valid()):
         form.save()
-        return redirect('learning_logs:topics') # go to a different page
+
+        # home -> topic page -> click on 'add topic' -> new_topic page -> original topic page with new item
+        return redirect('learning_logs:topics') # go back to page where topics are listed
 
     #Display a blank or invalid form
     context = {'form': form}
@@ -98,7 +100,9 @@ def new_pizzeria(request):
     
     if (form.is_valid()):
         form.save()
-        return redirect('learning_logs:pizzerias')     
+
+        # home -> pizzeria page -> click on 'add pizzeria' -> new_pizzeria page -> original pizzeria page with new item
+        return redirect('learning_logs:pizzerias') # go back to page where pizzerias are listed  
 
     context = {'form':form}  
     return render(request, 'learning_logs/new_pizzeria.html', context) 
