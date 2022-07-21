@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
 
-from .models import Topic, Pizzeria, Pizza
+from .models import Topic, Pizzeria
+from .forms import TopicForm
 
 # Create your views here.
 # the render() funtion renders the response based on data provided by views
@@ -59,7 +60,28 @@ def pizza(request):
     return render(request, 'learning_logs/pizzerias.html', context)
 
 def pizzas(request, pizzeria_id):
-    pizzeria = get_object_or_404(Pizzeria, pk=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
+    pizzeria = Pizzeria.objects.get(pk=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
     toppings = pizzeria.pizza_set.all()
     context = {'toppings': toppings, 'pizzeria': pizzeria}
     return render(request, 'learning_logs/pizzas.html', context)
+
+def new_topic(request):
+    """Add a new topic"""
+    # IMPORTANT:
+    # 1. GET - request to read data from server
+    # 2. POST - request to submit user data from a form
+    if (request.method != 'POST'): # if method is GET, else method is POST
+        # No data submitted? create a blank form
+        form = TopicForm() # because of no argument --> makes blank form
+    else:
+        # POST data sumbitted -> process data
+        # REMEMBER: check data is valid before saving in database
+        form = TopicForm(data=request.POST)
+    if (form.is_valid()):
+        form.save()
+        return redirect('learning_logs:topics') # go to a different page
+
+    #Display a blank or invalid form
+    context = {'form': form}
+    return render(request, 'learning_logs/new_topic.html', context)
+            

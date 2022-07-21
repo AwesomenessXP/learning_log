@@ -29,7 +29,10 @@
                     {% empty %}
                         <li>No topics have been added yet.</li>
                 {% endfor %} <!-- used to end a group enclosed in brackets -->
+                <li><a href="{% url 'learning_logs:new_topic' %}"><p id="add-btn">Add a new topic</p></a></li>
             </ul>
+
+           
         </div>
         {% endblock content %}
         

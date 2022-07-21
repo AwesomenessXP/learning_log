@@ -27,6 +27,9 @@ urlpatterns = [
     # <int:topic_id> matches an integer that stores the integer in topic_d
     path('topics/<int:topic_id>/', views.topic, name='topic'),
 
-    # Topping
-    path('pizzerias/<int:pizzeria_id>/', views.pizzas, name='pizza') # simple mistake here, DONT FORGET BRACKETS!!
+    # simple mistake here, DONT FORGET BRACKETS!!
+    path('pizzerias/<int:pizzeria_id>/', views.pizzas, name='pizza'), 
+
+    # Page for adding a new topic
+    path('new_topic/', views.new_topic, name='new_topic'),
 ]

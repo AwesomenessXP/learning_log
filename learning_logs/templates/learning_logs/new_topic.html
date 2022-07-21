@@ -1,0 +1,36 @@
+{% extends 'learning_logs/base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+        <style>
+            #btn {
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+            }
+        </style>
+        <p>Add a new topic:</p>
+
+        <!-- 'action' tells the browser where to send the data submitted 
+             from the form -->
+        <form action="{% url 'learning_logs:new_topic' %}" method="post">
+            {% csrf_token %} <!-- prevents attackers from using the form!! -->
+            {{form.as_p}} <!-- '.as_p' means render all forms as <p></p>-->
+            <div id='btn'>
+                <button name="submit">Add topic</button>
+            </div>
+        </form>
+        {% endblock content %}
+        
+        <script src="" async defer></script>
+    </body>
+</html>
