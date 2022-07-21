@@ -12,13 +12,25 @@
     </head>
     <body>
         {% block content %}
-            <h1>Pizzerias</h1>
-            {% for pizzeria in pizzerias %}
-            <!-- {{topping}} in double brackets means this is a template variable-->
-                <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}">{{pizzeria}}</a></li>
-                {% empty %}
-                    <li>No pizzerias have been added yet.</li>
-            {% endfor %}
+        <style> 
+            h1 {
+                display: flex;
+                justify-content: center;
+            }
+            
+        </style>
+                <h1>Pizzerias</h1>
+                <div>
+                <ul>
+                {% for pizzeria in pizzerias %}
+                    <!-- {{pizzeria}} in double brackets means this is a template variable-->
+                    <!-- the 'learning_logs:pizza' means that pizza belongs to learning_logs app-->
+                        <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}">{{pizzeria}}</a></li>
+                        {% empty %}
+                        <li>No pizzerias have been added yet.</li>
+                {% endfor %}
+                </ul>
+                </div>
         {% endblock content%}
         
         <script src="" async defer></script>

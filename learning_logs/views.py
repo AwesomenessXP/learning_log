@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Topic, Pizzeria, Pizza
 
@@ -45,6 +45,8 @@ def topic(request, topic_id):
 
     # we want to access topic_id attributes from the class
     topic = Topic.objects.get(id=topic_id) #ex: 1, 2, 3
+
+    # REMEMBER: we can access the related objects bc of 'one to many' relationship
     entries = topic.entry_set.order_by('-date_added') #ex: 7/20/22, 7/21/22
 
     # in context, we define a dictionary of all defined objects
@@ -57,7 +59,7 @@ def pizza(request):
     return render(request, 'learning_logs/pizzerias.html', context)
 
 def pizzas(request, pizzeria_id):
-    pizzeria = Pizzeria.objects.get(id=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
+    pizzeria = get_object_or_404(Pizzeria, pk=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
     toppings = pizzeria.pizza_set.all()
     context = {'toppings': toppings, 'pizzeria': pizzeria}
     return render(request, 'learning_logs/pizzas.html', context)

@@ -13,16 +13,24 @@
     <body>
 
         {% block content%}
+        <style>
+            h1 {
+                display: flex;
+                justify-content: center;
+            }
+        </style>
         <h1>Topics</h1>
-        <ul>
-            {% for topic in topics %}
-                <li>
-                    <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
-                </li>
-                {% empty %}
-                    <li>No topics have been added yet.</li>
-            {% endfor %} <!-- used to end a group enclosed in brackets -->
-        </ul>
+        <div>
+            <ul>
+                {% for topic in topics %}
+                    <li>
+                        <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+                    </li>
+                    {% empty %}
+                        <li>No topics have been added yet.</li>
+                {% endfor %} <!-- used to end a group enclosed in brackets -->
+            </ul>
+        </div>
         {% endblock content %}
         
         <script src="" async defer></script>

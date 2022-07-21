@@ -7,15 +7,56 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <style>
+            * {
+                font-family: sans-serif;
+                margin: 0;
+            }
+
+            div, p, h1 {
+                display: flex;
+                justify-content: center;
+            }
+
+            nav {
+                display: flex;
+                justify-content: flex-start;
+                padding: 30px;
+                background-color: #343A40;
+                color: white;
+                width: auto;
+            }
+
+            button {
+                background-color: #343A40;
+                color: white;
+                border: none;
+            }
+
+            nav * {
+                align-content: center;
+            }
+
+            nav > p {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                margin: auto auto auto 10px;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Add links to the respective pages-->
-        <p>
-            <!-- Each line says to generate a url matching the name of each page-->
-            <a href="{% url 'learning_logs:index' %}">Home</a> -
-            <a href="{% url 'learning_logs:topics' %}">Topics</a> -
-            <a href="{% url 'learning_logs:pizzerias' %}">Pizzerias</a>
-        </p>
+        <nav>
+            <h1>Learning Log</h1>
+            <p>
+                <!-- Each line says to generate a url matching the name of each page-->
+                <a href="{% url 'learning_logs:index' %}"><button>Home</button></a> -
+                <a href="{% url 'learning_logs:topics' %}"><button>Topics</button></a> -
+                <a href="{% url 'learning_logs:pizzerias' %}"><button>Pizzerias</button></a>
+            </p>
+        </nav>
 
         {% block content %}{% endblock content %}
 

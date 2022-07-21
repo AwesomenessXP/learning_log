@@ -11,14 +11,16 @@
     </head>
     <body>
         {% block content %}
-            <h1>Pizzas:</h1>
-            <ul>
-            {% for topping in toppings %}
-                <li>{{topping}}</li>
-                {% empty %} <!-- if there are no toppings...-->
-                    <li>There are no pizzas in this pizzeria!</li>
-            {% endfor %}
-            </ul>
+        <h1>Pizzas:</h1>
+            <div>
+                <ul>
+                {% for topping in toppings %}
+                    <li>{{topping}}</li>
+                    {% empty %} <!-- if there are no toppings...-->
+                        <li>There are no pizzas in this pizzeria!</li>
+                {% endfor %}
+                </ul>
+            </div>
         {% endblock %}
         
         <script src="" async defer></script>
