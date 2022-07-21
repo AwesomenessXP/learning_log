@@ -27,7 +27,7 @@ urlpatterns = [
     # <int:topic_id> matches an integer that stores the integer in topic_d
     path('topics/<int:topic_id>/', views.topic, name='topic'),
 
-    # simple mistake here, DONT FORGET BRACKETS!!
+    # simple mistake here, DONT FORGET BRACKETS AND COMMAS!!
     path('pizzerias/<int:pizzeria_id>/', views.pizzas, name='pizza'), 
 
     # Page for adding a new topic
@@ -35,4 +35,10 @@ urlpatterns = [
 
     # Page for adding a new pizzeria
     path('new_pizzeria/', views.new_pizzeria, name='new_pizzeria'),
+
+    # Page for adding a new entry
+    path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
+
+    # Page for editing an entry
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 ]

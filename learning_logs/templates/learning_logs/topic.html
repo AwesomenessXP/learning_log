@@ -25,6 +25,7 @@
             <p>Topic: {{topic}}</p>
 
             <p>Entries:</p>
+
             <ul>
                 {% for entry in entries %}
                     <li>
@@ -36,9 +37,19 @@
                         <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
                         <p>{{entry.text|linebreaks}}</p> <!-- creates a linebreak-->
                     </li>
+                    <li>
+                        <div class='btn'>
+                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a></button>
+                        </div>
+                    </li>
                     {% empty %} <!-- if there are no entries, do this-->
-                        <li>There are no entries for this topic</li>
+                        <li><p>There are no entries for this topic</p></li>
                 {% endfor %}
+                <li>
+                    <div class='btn'>
+                        <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></button>
+                    </div>
+                </li>
             </ul>
         {% endblock content %}
         

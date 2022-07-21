@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import Topic, Pizzeria
-from .forms import TopicForm, PizzeriaForm
+from .models import Topic, Pizzeria, Entry
+from .forms import TopicForm, PizzeriaForm, EntryForm
 
 # Create your views here.
 # the render() funtion renders the response based on data provided by views
@@ -106,3 +106,45 @@ def new_pizzeria(request):
 
     context = {'form':form}  
     return render(request, 'learning_logs/new_pizzeria.html', context) 
+
+def new_entry(request, topic_id):
+    """Add a new entry for a particular topic"""
+    topic = Topic.objects.get(id=topic_id)
+
+    # validate requests in form
+    if (request.method != 'POST'):
+        form = EntryForm() # no data submitted? create a blank form
+    else:
+        form = EntryForm(data=request.POST)
+    
+        # return response based on request
+        if (form.is_valid()):
+            # commit=False means make a new entry object without saving it to the database
+            new_entry = form.save(commit=False)
+            new_entry.topic = topic
+            new_entry.save()
+            return redirect('learning_logs:topic', topic_id=topic_id)
+
+    # Display a blank or invalid form
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html',context)
+
+def edit_entry(request, entry_id):
+    # when edit_entry recieves a GET request, edit_entry() returns a form for editing
+    """Edit an existing entry"""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if (request.method != 'POST'):
+        # initial request: pre-fill form with current entry
+        # create a form instance based on existing entry object!!
+        form = EntryForm(instance=entry)
+    else:
+        form = EntryForm(instance=entry, data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topic', topic_id=topic.id)
+    
+    context = {'entry': entry, 'topic':topic, 'form':form}
+    return render(request, 'learning_logs/edit_entry.html', context)
