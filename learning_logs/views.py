@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Topic, Pizzeria
-from .forms import TopicForm
+from .forms import TopicForm, PizzeriaForm
 
 # Create your views here.
 # the render() funtion renders the response based on data provided by views
@@ -70,13 +70,18 @@ def new_topic(request):
     # IMPORTANT:
     # 1. GET - request to read data from server
     # 2. POST - request to submit user data from a form
-    if (request.method != 'POST'): # if method is GET, else method is POST
+    # 3. this function shows basic form validation
+
+    # if method is GET, else method is POST
+    if (request.method != 'POST'): 
         # No data submitted? create a blank form
         form = TopicForm() # because of no argument --> makes blank form
     else:
         # POST data sumbitted -> process data
         # REMEMBER: check data is valid before saving in database
         form = TopicForm(data=request.POST)
+
+    # if valid, redirect to topics, else -> display blank form
     if (form.is_valid()):
         form.save()
         return redirect('learning_logs:topics') # go to a different page
@@ -84,4 +89,16 @@ def new_topic(request):
     #Display a blank or invalid form
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
-            
+
+def new_pizzeria(request):
+    if (request.method != 'POST'):
+        form = PizzeriaForm() # make a blank form if nothing to send to server
+    else:
+        form = PizzeriaForm(data=request.POST)
+    
+    if (form.is_valid()):
+        form.save()
+        return redirect('learning_logs:pizzerias')     
+
+    context = {'form':form}  
+    return render(request, 'learning_logs/new_pizzeria.html', context) 

@@ -17,11 +17,17 @@
                 display: flex;
                 justify-content: center;
             }
+
+            ul {
+                display: grid;
+                justify-content: center;
+            }
             
         </style>
-                <h1>Pizzerias</h1>
-                <div>
-                <ul>
+
+        <h1>Pizzerias</h1>
+        <div>
+            <ul>
                 {% for pizzeria in pizzerias %}
                     <!-- {{pizzeria}} in double brackets means this is a template variable-->
                     <!-- the 'learning_logs:pizza' means that pizza belongs to learning_logs app-->
@@ -29,8 +35,11 @@
                         {% empty %}
                         <li>No pizzerias have been added yet.</li>
                 {% endfor %}
-                </ul>
-                </div>
+            </ul>
+            <div class='btn'>
+                <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizzeria' %}">Add new pizzeria</a></button>
+            </div>
+        </div>
         {% endblock content%}
         
         <script src="" async defer></script>

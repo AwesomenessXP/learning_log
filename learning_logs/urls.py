@@ -32,4 +32,7 @@ urlpatterns = [
 
     # Page for adding a new topic
     path('new_topic/', views.new_topic, name='new_topic'),
+
+    # Page for adding a new pizzeria
+    path('new_pizzeria/', views.new_pizzeria, name='new_pizzeria'),
 ]

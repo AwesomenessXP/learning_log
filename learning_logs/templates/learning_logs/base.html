@@ -14,24 +14,30 @@
             }
 
             div, p, h1 {
-                display: flex;
+                display: grid;
                 justify-content: center;
             }
 
             nav {
                 display: flex;
                 justify-content: flex-start;
-                padding: 30px;
+                padding: 20px;
                 background-color: #343A40;
                 color: white;
                 width: auto;
                 margin-bottom: 30px;
             }
 
+            nav *, button:hover {
+                cursor: pointer;
+            }
+
             button {
                 background-color: #343A40;
                 color: white;
                 border: none;
+                border-radius: 8px;
+                padding: 5px 10px;
             }
 
             nav * {
@@ -43,6 +49,20 @@
                 justify-content: center;
                 align-content: center;
                 margin: auto auto auto 10px;
+            }
+
+            .btn {
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .add-topic-or-pizza:visited {
+                color: white;
+            }
+
+            * {
+                text-decoration: none;
             }
 
         </style>
