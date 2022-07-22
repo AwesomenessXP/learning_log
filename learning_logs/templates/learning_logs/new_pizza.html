@@ -17,6 +17,7 @@
         </p>
         <form action="{% url 'learning_logs:new_pizza' pizza.id %}">
             {% csrf_token %}
+            {{form.as_p}}
             <div class='btn'>
                 <button name="submit">Add pizza</button>
             </div>
