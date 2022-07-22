@@ -27,4 +27,4 @@ class PizzaForm(forms.ModelForm):
         model = Pizza
         fields = ['name']
         labels = {'name':'Pizza'}
-        widgets = {'name':forms.TextInput(attrs={'required': True})}
+        widgets = {'name':forms.TextInput()}

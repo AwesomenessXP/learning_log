@@ -13,9 +13,9 @@
         {% block content %}
         <!-- when clicked -> take us back to the previous page -->
         <p>
-            <a href="{% url 'learning_logs:pizza' pizza.id %}">{{pizza}}</a>
+            <a href="{% url 'learning_logs:pizza' pizzeria.id %}">{{pizzeria}}</a>
         </p>
-        <form action="{% url 'learning_logs:new_pizza' pizza.id %}">
+        <form action="{% url 'learning_logs:new_pizza' pizzeria.id %}" method="post">
             {% csrf_token %}
             {{form.as_p}}
             <div class='btn'>
