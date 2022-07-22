@@ -19,8 +19,13 @@
         <h1>{{pizzeria}}</h1>
             <div>
                 <ul>
-                {% for topping in toppings %}
-                    <li>{{topping}}</li>
+                {% for pizza in pizzas %}
+                    <li>{{pizza}}</li>
+                    <li>
+                        <div class='btn'>
+                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_pizza' pizza.id %}">Edit pizza</a></button>
+                        </div>
+                    </li>
                     {% empty %} <!-- if there are no toppings...-->
                         <li>There are no pizzas in this pizzeria!</li>
                 {% endfor %}

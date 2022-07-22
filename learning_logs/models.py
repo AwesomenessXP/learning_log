@@ -32,7 +32,7 @@ class Pizzeria(models.Model):
         return f"{self.name[:50]}"
 
 class Pizza(models.Model):
-    pizza = models.ForeignKey(Pizzeria, on_delete=models.CASCADE)
+    pizzeria = models.ForeignKey(Pizzeria, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 
     def __str__(self):

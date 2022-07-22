@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # IMPORTANT: use the root urls.py is used to connect DIFFERENT APPS
     # these are two different views when you enter the website:
     # REMEMBER: they are at the same level!!
 
+    # ADMIN PAGE
     path('admin/', admin.site.urls), # http://127.0.0.1:8000/admin/  
 
     # this path uses '' AND it can chain other urls from include()  
     # REMEMBER: include () chains other urls
+
+    # HOME PAGE
     path('', include('learning_logs.urls')), # http://127.0.0.1:8000/
+    
+    # USER LOGIN PAGE
+    # Include this app in the root url:
+    path('users/', include('users.urls')),
 ]

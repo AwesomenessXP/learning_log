@@ -61,8 +61,8 @@ def pizza(request):
 
 def pizzas(request, pizzeria_id):
     pizzeria = Pizzeria.objects.get(pk=pizzeria_id) # the ID (some integer) of the page depends on the pizzeria id
-    toppings = pizzeria.pizza_set.all()
-    context = {'toppings': toppings, 'pizzeria': pizzeria}
+    pizzas = pizzeria.pizza_set.all()
+    context = {'pizzas': pizzas, 'pizzeria': pizzeria}
     return render(request, 'learning_logs/pizzas.html', context)
 
 def new_topic(request):
@@ -130,12 +130,14 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html',context)
 
 def new_pizza(request, pizzeria_id):
+    # get parent object
     pizzeria = Pizzeria.objects.get(id=pizzeria_id) # get id for pizza objects, will use them to return later
 
+    # save an instance of the child object in the form
     if (request.method != 'POST'):
-        form = PizzeriaForm()
+        form = PizzaForm()
     else:
-        form = PizzeriaForm(data=request.POST)
+        form = PizzaForm(data=request.POST)
         if form.is_valid():
             new_pizza = form.save(commit=False)
             new_pizza.pizzeria = pizzeria
@@ -165,18 +167,18 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic':topic, 'form':form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
-def edit_pizza(request, entry_id):
-    entry = Pizza.objects.get(id=entry_id) # create a form instance based on existing object
-    pizza = entry.pizzeria # get the parent (we'll display as output)
+def edit_pizza(request, pizza_id):
+    pizza = Pizza.objects.get(id=pizza_id) # create a form instance based on existing object
+    pizzeria = pizza.pizzeria # get the parent (we'll display as output)
 
     if (request.method != 'POST'):
-        form = PizzaForm(instance=entry)
+        form = PizzaForm(instance=pizza)
     else:
-        form = PizzaForm(instance=entry, data=request.POST)
+        form = PizzaForm(instance=pizza, data=request.POST)
 
         if (form.is_valid()):
             form.save()
-            return redirect('learning_logs:pizzeria', pizza_id=pizza.id)
+            return redirect('learning_logs:pizza', pizzeria_id=pizzeria.id)
 
-    context = {'entry':entry, 'pizza':pizza, 'form': form}
+    context = {'pizza':pizza, 'pizzeria':pizzeria, 'form': form}
     return render(request, 'learning_logs/edit_pizza.html', context)

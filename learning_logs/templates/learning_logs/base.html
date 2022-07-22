@@ -18,6 +18,13 @@
                 <a href="{% url 'learning_logs:index' %}"><button>Home</button></a> -
                 <a href="{% url 'learning_logs:topics' %}"><button>Topics</button></a> -
                 <a href="{% url 'learning_logs:pizzerias' %}"><button>Pizzerias</button></a>
+                {% if user.is_authenticated %}
+                <!-- in django, there is 'user' variable that has .is_authenticated-->
+                    Hello, {{user.username }}.
+                    <a href="{% url'users:logout' %}"><button>Log out</button></a>
+                {% else %}
+                    <a href="{% url 'users:login' %}"><button>Log in</button></a>
+                {% endif %}
             </p>
         </nav>
 
