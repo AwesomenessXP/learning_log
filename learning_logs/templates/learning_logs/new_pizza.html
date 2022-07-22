@@ -1,0 +1,28 @@
+{% extends 'learning_logs/base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+        <!-- when clicked -> take us back to the previous page -->
+        <p>
+            <a href="{% url 'learning_logs:pizza' pizza.id %}">{{pizza}}</a>
+        </p>
+        <form action="{% url 'learning_logs:new_pizza' pizza.id %}">
+            {% csrf_token %}
+            <div class='btn'>
+                <button name="submit">Add pizza</button>
+            </div>
+        </form>
+        {% endblock content%}
+        
+        <script src="" async defer></script>
+    </body>
+</html>

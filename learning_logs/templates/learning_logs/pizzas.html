@@ -11,6 +11,11 @@
     </head>
     <body>
         {% block content %}
+        <style>
+            .no-bullet {
+                list-style: none;
+            }
+        </style>
         <h1>Pizzas:</h1>
             <div>
                 <ul>
@@ -19,6 +24,11 @@
                     {% empty %} <!-- if there are no toppings...-->
                         <li>There are no pizzas in this pizzeria!</li>
                 {% endfor %}
+                <li class='no-bullet'>
+                    <div class='btn'>
+                        <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizza' pizzeria.id %}">Add new entry</a></button>
+                    </div>
+                </li>
                 </ul>
             </div>
         {% endblock %}

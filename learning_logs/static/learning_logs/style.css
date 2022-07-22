@@ -30,6 +30,10 @@ button {
     padding: 5px 10px;
 }
 
+button > a {
+    color: white;
+}
+
 nav * {
     align-content: center;
 }
@@ -53,4 +57,8 @@ p {
 
 * {
     text-decoration: none;
+}
+
+.link {
+    color: blue;
 }

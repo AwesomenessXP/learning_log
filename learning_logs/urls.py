@@ -2,6 +2,7 @@
 
 from django.urls import path
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'learning_logs'
 urlpatterns = [
@@ -41,4 +42,10 @@ urlpatterns = [
 
     # Page for editing an entry
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+
+    # Page for adding a new pizza
+    path('new_pizza/<int:pizzeria_id>/', views.new_pizza, name='new_pizza'),
+
+    # Page for editing pizza
+    path('edit_pizza/<int:pizza_id>/', views.edit_pizza, name='edit_pizza'), 
 ]

@@ -2,16 +2,15 @@
 
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
     </head>
     <body>
-
         {% block content%}
         <style>
             h1 {
@@ -24,7 +23,9 @@
             <ul>
                 {% for topic in topics %}
                     <li>
-                        <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+                        <!-- this URL requires a topic.id argument because it was 
+                             specified in the topic() function-->
+                        <a class="link" href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
                     </li>
                     {% empty %}
                         <li>No topics have been added yet.</li>
@@ -34,8 +35,7 @@
                 <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_topic' %}">Add new topic</a></button>
             </div>
         </div>
-        {% endblock content %}
-        
         <script src="" async defer></script>
+        {% endblock content %}
     </body>
 </html>

@@ -1,0 +1,25 @@
+{% extends 'learning_logs/base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+        <p>Edit pizza entry:</p>
+        
+        <form action="{% url 'learning_logs:edit_pizza' pizza.id %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class='btn'><button>Save changes</button></div>
+        </form>
+        {% endblock content%}
+        
+        <script src="" async defer></script>
+    </body>
+</html>

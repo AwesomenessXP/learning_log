@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+    {% block content %}
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,28 +11,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
-    <body>
-        {% block content %}
-        <style> 
-            h1 {
-                display: flex;
-                justify-content: center;
-            }
-
-            ul {
-                display: grid;
-                justify-content: center;
-            }
-            
-        </style>
-
+    <body> 
         <h1>Pizzerias</h1>
         <div>
             <ul>
                 {% for pizzeria in pizzerias %}
                     <!-- {{pizzeria}} in double brackets means this is a template variable-->
                     <!-- the 'learning_logs:pizza' means that pizza belongs to learning_logs app-->
-                        <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}">{{pizzeria}}</a></li>
+                        <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}" class="link">{{pizzeria}}</a></li>
                         {% empty %}
                         <li>No pizzerias have been added yet.</li>
                 {% endfor %}
@@ -40,8 +27,7 @@
                 <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizzeria' %}">Add new pizzeria</a></button>
             </div>
         </div>
-        {% endblock content%}
-        
         <script src="" async defer></script>
     </body>
+    {% endblock content%}
 </html>
