@@ -46,6 +46,6 @@ urlpatterns = [
     # Page for adding a new pizza
     path('new_pizza/<int:pizzeria_id>/', views.new_pizza, name='new_pizza'),
 
-    # Page for editing pizza
-    path('edit_pizza/<int:pizza_id>/', views.edit_pizza, name='edit_pizza'), 
+    # # Page for editing pizza
+    # path('edit_pizza/<int:pizza_id>/', views.edit_pizza, name='edit_pizza'), 
 ]
