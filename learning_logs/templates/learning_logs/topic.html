@@ -27,31 +27,35 @@
 
             <p>Entries:</p>
 
-            <ul>
-                {% for entry in entries %}
-                    <li>
-                        <!--
-                            1. the vertical line '|' represents template filter
-                            2. the template filter modifies the value in a template variable
-                            3. filter: date:'M d, Y H:i'
-                        -->
-                        <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
-                        <p>{{entry.text|linebreaks}}</p> <!-- creates a linebreak-->
-                    </li>
+            <div class="content">
+                <div class="topic-list">
+                <ul class="topics">
+                    {% for entry in entries %}
+                        <li>
+                            <!--
+                                1. the vertical line '|' represents template filter
+                                2. the template filter modifies the value in a template variable
+                                3. filter: date:'M d, Y H:i'
+                            -->
+                            <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
+                            <p>{{entry.text|linebreaks}}</p> <!-- creates a linebreak-->
+                        </li>
+                        <li>
+                            <div class='btn'>
+                                <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a></button>
+                            </div>
+                        </li>
+                        {% empty %} <!-- if there are no entries, do this-->
+                            <li><p>There are no entries for this topic</p></li>
+                    {% endfor %}
                     <li>
                         <div class='btn'>
-                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a></button>
+                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></button>
                         </div>
                     </li>
-                    {% empty %} <!-- if there are no entries, do this-->
-                        <li><p>There are no entries for this topic</p></li>
-                {% endfor %}
-                <li>
-                    <div class='btn'>
-                        <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></button>
-                    </div>
-                </li>
-            </ul>
+                </ul>
+                </div>
+            </div>
         {% endblock content %}
         
         <script src="" async defer></script>

@@ -13,16 +13,18 @@
     </head>
     <body> 
         <h1>Pizzerias</h1>
-        <div>
-            <ul>
-                {% for pizzeria in pizzerias %}
-                    <!-- {{pizzeria}} in double brackets means this is a template variable-->
-                    <!-- the 'learning_logs:pizza' means that pizza belongs to learning_logs app-->
-                        <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}" class="link">{{pizzeria}}</a></li>
-                        {% empty %}
-                        <li>No pizzerias have been added yet.</li>
-                {% endfor %}
-            </ul>
+        <div class="content">
+            <div class="topic-list">
+                <ul>
+                    {% for pizzeria in pizzerias %}
+                        <!-- {{pizzeria}} in double brackets means this is a template variable-->
+                        <!-- the 'learning_logs:pizza' means that pizza belongs to learning_logs app-->
+                            <li><a href="{% url 'learning_logs:pizza' pizzeria.id %}" class="link">{{pizzeria}}</a></li>
+                            {% empty %}
+                            <li>No pizzerias have been added yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
             <div class='btn'>
                 <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizzeria' %}">Add new pizzeria</a></button>
             </div>

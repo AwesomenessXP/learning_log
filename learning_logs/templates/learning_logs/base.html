@@ -6,40 +6,34 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block content1%}
         {% load static %} <!-- DONT FORGET '{% load static %}' BEFORE ADDING STATIC PAGES -->
         <link rel="stylesheet" type="text/css" href="{% static 'learning_logs/style.css' %}">
+        {% endblock content1%}
     </head>
     <body>
-        {% block content1 %}
-        <style>
-            .user {
-                display: flex;
-            } 
-        </style>
-        {% endblock content1 %}
         <!-- Add links to the respective pages-->
         <nav>
             <h1>Learning Log</h1>
-            <p>
                 <!-- Each line says to generate a url matching the name of each page-->
-                <a href="{% url 'learning_logs:index' %}"><button>Home</button></a> -
-                <a href="{% url 'learning_logs:topics' %}"><button>Topics</button></a> -
-                <a href="{% url 'learning_logs:pizzerias' %}"><button>Pizzerias</button></a>
-            </p>
-            {% if user.is_authenticated %}
-                <!-- in django, there is 'user' variable that has .is_authenticated-->
                 <div class="user">
-                    <p>Hello, {{user.username }}.</p>
-                    <a href="{% url 'users:logout' %}"><button>Log out</button></a>
+                    <a href="{% url 'learning_logs:index' %}"><button>Home</button></a> -
+                    <a href="{% url 'learning_logs:topics' %}"><button>Topics</button></a> -
+                    <a href="{% url 'learning_logs:pizzerias' %}"><button>Pizzerias</button></a>
                 </div>
-            {% else %}
-            <div class="user">
-                <a href="{% url 'users:register' %}"><button>Register</button></a>
-            </div>
-            <div class="user">
-                <a href="{% url 'users:login' %}"><button>Log in</button></a>
-            </div>
-            {% endif %}
+                {% if user.is_authenticated %}
+                    <!-- in django, there is 'user' variable that has .is_authenticated-->
+                    <div class="user">
+                        <p>Hello, {{user.username }}.</p>
+                        <button><a href="{% url 'users:logout' %}">Log out</a></button>
+                    </div>
+                {% else %}
+                <div class="user">
+                    <button><a href="{% url 'users:register' %}">Register</a></button>
+                    <button><a href="{% url 'users:login' %}">Log in</a></button>
+                </div>
+
+                {% endif %}
         </nav>
 
         {% block content %}{% endblock content %}

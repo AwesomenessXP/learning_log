@@ -21,15 +21,19 @@
             <p>Your username and password did't match! Please try again!</p>
         {% endif %}
 
-        <form method="post" action="{% url 'users:login' %}">
-            {% csrf_token %}
-            {{form.as_p}}
-            <div class='btn'>
-                <button name="submit">Log in</button>
-                <!-- value tells us where to redirect the user after logging in-->
-                <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+        <div class="login">
+            <div class="login-cont">
+                <form method="post" action="{% url 'users:login' %}">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class='btn'>
+                        <button name="submit">Log in</button>
+                        <!-- value tells us where to redirect the user after logging in-->
+                        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
 
         {% endblock content %}
         

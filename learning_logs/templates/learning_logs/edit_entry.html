@@ -11,17 +11,19 @@
     </head>
     <body>
         {% block content %}
-        <p>
-            <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+        <p class="topic">
+            <a href="{% url 'learning_logs:topic' topic.id %}">< {{topic}}</a>
         </p>
 
-        <p>Edit entry:</p>
+        <h1>Edit entry:</h1>
 
-        <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <div class='btn'><button>Save changes</button></div>
-        </form>
+        <div class="content entry">
+            <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class='btn'><button>Save changes</button></div>
+            </form>
+        </div>
 
         {% endblock content %}
         

@@ -19,18 +19,20 @@
             }
         </style>
         <h1>Topics</h1>
-        <div>
-            <ul>
-                {% for topic in topics %}
-                    <li>
-                        <!-- this URL requires a topic.id argument because it was 
-                             specified in the topic() function-->
-                        <a class="link" href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
-                    </li>
+        <div class="content">
+            <div class="topic-list">
+                <ul>
+                    {% for topic in topics %}
+                        <li>
+                            <!-- this URL requires a topic.id argument because it was 
+                                specified in the topic() function-->
+                            <a class="link" href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+                        </li>
                     {% empty %}
-                        <li>No topics have been added yet.</li>
-                {% endfor %} <!-- used to end a group enclosed in brackets -->
-            </ul>
+                            <li>No topics have been added yet.</li>
+                    {% endfor %} <!-- used to end a group enclosed in brackets -->
+                </ul>
+            </div>
             <div class='btn'>
                 <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_topic' %}">Add new topic</a></button>
             </div>

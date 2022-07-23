@@ -11,30 +11,27 @@
     </head>
     <body>
         {% block content %}
-        <style>
-            .no-bullet {
-                list-style: none;
-            }
-        </style>
         <h1>{{pizzeria}}</h1>
-            <div>
-                <ul>
-                {% for pizza in pizzas %}
-                    <li>{{pizza}}</li>
-                    <li>
+            <div class="content">
+                <div class="topic-list">
+                    <ul class="pizzas">
+                    {% for pizza in pizzas %}
+                        <li>{{pizza}}</li>
+                        <li>
+                            <div class='btn'>
+                                <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_pizza' pizza.id %}">Edit pizza</a></button>
+                            </div>
+                        </li>
+                        {% empty %} <!-- if there are no toppings...-->
+                            <li>There are no pizzas in this pizzeria!</li>
+                    {% endfor %}
+                    <li class='no-bullet'>
                         <div class='btn'>
-                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:edit_pizza' pizza.id %}">Edit pizza</a></button>
+                            <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizza' pizzeria.id %}">Add new entry</a></button>
                         </div>
                     </li>
-                    {% empty %} <!-- if there are no toppings...-->
-                        <li>There are no pizzas in this pizzeria!</li>
-                {% endfor %}
-                <li class='no-bullet'>
-                    <div class='btn'>
-                        <button><a class="add-topic-or-pizza" href="{% url 'learning_logs:new_pizza' pizzeria.id %}">Add new entry</a></button>
-                    </div>
-                </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         {% endblock %}
         

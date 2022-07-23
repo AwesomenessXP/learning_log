@@ -11,13 +11,14 @@
     </head>
     <body>
         {% block content %}
-        <p>Edit pizza entry:</p>
-        
-        <form action="{% url 'learning_logs:edit_pizza' pizza.id %}" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <div class='btn'><button>Save changes</button></div>
-        </form>
+        <h1>Edit pizza entry:</h1>
+        <div class="content entry">
+            <form action="{% url 'learning_logs:edit_pizza' pizza.id %}" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class='btn'><button>Save changes</button></div>
+            </form>
+        </div>
         {% endblock content%}
         
         <script src="" async defer></script>
