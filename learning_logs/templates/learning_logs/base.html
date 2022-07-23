@@ -10,6 +10,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'learning_logs/style.css' %}">
     </head>
     <body>
+        {% block content1 %}
+        <style>
+            .user {
+                display: flex;
+            } 
+        </style>
+        {% endblock content1 %}
         <!-- Add links to the respective pages-->
         <nav>
             <h1>Learning Log</h1>
@@ -18,14 +25,21 @@
                 <a href="{% url 'learning_logs:index' %}"><button>Home</button></a> -
                 <a href="{% url 'learning_logs:topics' %}"><button>Topics</button></a> -
                 <a href="{% url 'learning_logs:pizzerias' %}"><button>Pizzerias</button></a>
-                {% if user.is_authenticated %}
-                <!-- in django, there is 'user' variable that has .is_authenticated-->
-                    Hello, {{user.username }}.
-                    <a href="{% url'users:logout' %}"><button>Log out</button></a>
-                {% else %}
-                    <a href="{% url 'users:login' %}"><button>Log in</button></a>
-                {% endif %}
             </p>
+            {% if user.is_authenticated %}
+                <!-- in django, there is 'user' variable that has .is_authenticated-->
+                <div class="user">
+                    <p>Hello, {{user.username }}.</p>
+                    <a href="{% url 'users:logout' %}"><button>Log out</button></a>
+                </div>
+            {% else %}
+            <div class="user">
+                <a href="{% url 'users:register' %}"><button>Register</button></a>
+            </div>
+            <div class="user">
+                <a href="{% url 'users:login' %}"><button>Log in</button></a>
+            </div>
+            {% endif %}
         </nav>
 
         {% block content %}{% endblock content %}

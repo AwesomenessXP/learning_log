@@ -1,0 +1,32 @@
+{% extends 'learning_logs/base.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block content %}
+        <style>
+            p {
+                display: flex;
+                justify-content: flex-start;
+            }
+        </style>
+        <form method="post" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class='btn'>
+                <button name="submit">Register</button>
+                <input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
+            </div>
+        </form>
+        {% endblock content %}
+        
+        <script src="" async defer></script>
+    </body>
+</html>

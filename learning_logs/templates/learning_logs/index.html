@@ -14,7 +14,12 @@
         <!-- REMEMBER: url simply calls a function (a view) which returns reponse-->
         <!-- EVERYTHING WE ARENT INHERITING FROM BASE.HTML GOES IN BLOCK-->
         {% block content %} <!-- Define content block-->
-        <h1>Learning Log </h1>
+        <style>
+            .learning-log {
+                margin-bottom: 15px;
+            }
+        </style>
+        <h1 class="learning-log">Learning Log </h1>
             <p>Learning Log helps you keep track of your learning, for any topic you're learning about.</p>
         {% endblock content %} <!-- end content block-->  
         <script src="" async defer></script>
